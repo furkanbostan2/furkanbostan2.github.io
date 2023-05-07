@@ -1,73 +1,718 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-* {
+﻿
+
+
+*,
+*::before,
+*::after { /*sayfa kenarlarını ayarlar */
     margin: 0;
     padding: 0;
 }
 
-.container {
-    background: url(back.jpg);
-    height: 100vh;
-    background-size: 100% 100%;
+
+.bg {
+    background: rgba(248, 254, 216, 0.15);
 }
-.container .navbar{
+
+li {
+    list-style: none;
+}
+/* listedeki noktaların cıkartılmasını saglar. */
+
+
+a {
+    text-decoration: none; /* linklerin altı cizili olmamasını saglar. */
+    color: inherit;
+}
+
+
+a,
+img,
+span,
+input,
+strong,
+button,
+textarea,
+ion-icon {
+    display: block;
+}
+/* blok halinde yazılmasını saglar yan yana degil */
+
+
+img {
+    height: auto;
+}
+
+
+button,
+input, /* iletisim kısmı form alanı */
+textarea {
+    background: none;
+    font: inherit;
+}
+
+
+input, /* iletişim kısmı form genişliği */
+textarea {
     width: 100%;
-    height: 80px;
-    background: rgba(22,112,214,0.4)
 }
-.navbar ul{
-    float:right;
-    margin-right:20px;
+
+
+html {
+    font-size: 10px;
+    font-family: var(--ff-open-sans);
+    scroll-behavior: smooth; /* kayma efekti */
 }
-.navbar .logo{
-    display: inline-block;
-    margin-left:50px;
-    margin-top:20px;
+
+body {
+    background-color: var(--uzay_mavisi); /* arka plan ayarlar hakkımda vs */
+    color: var(--cadet-blue-crayola); /* kantar sk kısmı */
+    font-size: 1.6rem;
+    line-height: 1.6;
 }
-.navbar .logo a{
-    text-decoration:none;
-    font-size:30px;
-    font-family:sans-serif;
-    color:floralwhite
+
+
+
+
+.container {
+    padding-inline: 20px;
 }
-.navbar ul li{
-    list-style:none;
-    display:inline-block;
-    margin:0 8px;
-    line-height:80px;
+
+.btn { /*iletisime gec ve cv indir butonu */
+    color: var(--beyaz);
+    font-family: var(--ff-barlow);
+    font-size: var(--fs-5);
+    font-weight: bold;
+    max-width: max-content;
+    padding: var(--padding, 10px 40px);
+    border-radius: 50px;
+    transition: var(--transition-2);
 }
-    .navbar ul li a {
-        color: white;
-        text-decoration: none;
-        font-size: 20px;
-        padding: 6px 13px;
-        font-family: Roboto;
+
+.btn-primary.blue {
+    background-color: var(--koyu_mavi);
+}
+    /* iletisim kısmı */
+
+    .btn-primary.blue:is(:hover, :focus) {
+        background-color: white;
     }
 
-.navbar ul li a.active,
-.navbar ul li a:hover{
-    background:#ff6e00;
-    border-radius:2px;
+
+
+.section {
+    padding-block: var(--section-padding);
 }
-.container .center{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-family:sans-serif;
-    user-select:none
+/* İletisim sayfasına gecerken bosluk */
+
+.section-subtitle { /* becerilerim */
+    color: var(--turuncu);
+    font-family: var(--ff-barlow);
+    font-size: var(--fs-4);
 }
-.center h1{
-    color:black;
-    font-size:70px;
-    font-weight:bold;
-    width:900px;
-    text-align:center;
-}
-.center h2 {
-    color: darkslategray;
-    font-size: 50px;
+
+.h2,
+.h3 { /* yeteneklrimi yenilemek */
+    color: var(--beyaz);
+    font-family: var(--ff-barlow);
     font-weight: bold;
-    width: 885px;
-    margin-top:10px;
+    line-height: 1.3;
+}
+
+.h2 {
+    font-size: var(--fs-2);
+}
+
+.h3 {
+    font-size: var(--fs-3);
+}
+
+.section-title, .section-text, .section-subtitle {
     text-align: center;
+}
+/* yeteneklerimi yenilemek ortala sayfayı */
+
+
+
+
+
+/*  HEADER  */
+
+.header {
+    position: fixed;
+    padding-block: 15px;
+    width: 100%;
+    height: 65px;
+    box-shadow: var(--shadow);
+    z-index: 4; /* ekran asagı kaydıgında fotografın arka planda kalmasını saglar. */
+}
+
+
+
+    .header > .container {
+        background: rgba(225, 247, 247, 0.48);
+        display: flex; /* konum ayarlarını duzeltir */
+        justify-content: space-between; /* araya bosluk atar. */
+        align-items: center;
+    }
+
+.logo { /* BURAK TAŞ logosunu ayarlar. */
+    color: var(--beyaz);
+    font-family: var(--ff-poppins);
+    font-size: 2.4rem;
+}
+
+
+.navbar { /* anasayfa blog, kısımlarının halledilmistir */
+    position: absolute;
+    
+    top: 65px;
+    left: 0;
+    width: 100%;
+    padding-inline: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: var(--transition-2);
+}
+
+
+
+.navbar-link { /* koyu beyaz olmasını saglar listenin*/
+    color: var(--beyaz);
+    font-family: var(--ff-barlow);
+    padding-block: 3px;
+    transition: var(--transition-1);
+}
+
+.navbar-link:is(:hover, :focus) {
+     background: white;
+     border-radius: 2px;
+ }
+
+.navbar .btn {
+    background-color: var(--turuncu);
+    margin-block-start: 15px;
+}
+
+.btn-primary.blue {
+    background-color: var(--koyu_mavi);
+}
+
+    .btn-primary.blue:is(:hover, :focus) {
+        background-color: var(--turuncu);
+    }
+
+
+
+
+
+/*  Main Arka plan rengini ayarlar */
+
+.elem,
+.rotate-img {
+    display: none;
+}
+
+.main {
+    background-image: url("../images/hero-bg.jpg");
+    min-height: 100vh; /* anasayfa ekran boyutunu ayarlar vh ise her ekranda bu boyutun degismemesini saglar*/
+    display: grid; /* kullanılan resimlerin duzenli yerlesimini saglar*/
+}
+
+.main-content {
+    color: var(--beyaz); /* selam ile baslayan paragrafın buyuk olmasını saglar*/
+}
+
+.main-title { /*selam paragrafını kapsar*/
+    font-family: 'Barlow', sans-serif; /* yazı tipi*/
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.3; /* satır arası bosluk*/
+}
+
+    .main-title strong {
+        font-size: 60px;
+        font-weight: inherit; /* yazı kalınlıgı*/
+    }
+
+
+.btn-group {
+    display: flex; /* iletisime gec ve hakkında kısmının yerleşmesini saglar*/
+}
+
+
+
+
+
+/*  HAKKIMDA  */
+.about .section-subtitle {
+    margin-block-end: 3-20px;
+}
+
+.about .section-title {
+    margin-block-end: 20px;
+}
+
+.about .section-text {
+    margin-block-end: 60px;
+}
+
+.about-banner > .img-cover {
+    border-radius: inherit;
+}
+
+.about :is(.section-title, .section-subtitle, .section-text) {
+    text-align: left;
+}
+
+.about :is(.section-title, .section-text) {
+    margin-block-end: 30px;
+}
+/* paragraf arası bosluk miktarını ayarlar*/
+
+
+
+
+/*  BECERİLER  */
+
+.skills .section-title {
+    margin-block-end: 20px;
+}
+
+.skills .section-text {
+    margin-block-end: 70px;
+}
+
+.skills-list {
+    display: grid; /* c html tablosunun şeklini ayarlar yani yarılar.*/
+    gap: 25px; /* bosluk ayarlamak icin kullanılır.*/
+}
+
+.skills-title,
+.skills-data {
+    color: var(--beyaz); /* c,python verilerinin rengi*/
+    font-size: var(--fs-5);
+    font-family: var(--ff-barlow);
+    font-weight: bold;
+}
+
+.skills-progress-box { /* cizgiyi ayarlar*/
+    background-color: var(--beyaz);
+    height: 8px;
+    border-radius: var(--radius-5); /* cizginin eğimli olmasını saglar*/
+}
+
+.skills-progress { /* cizginin ic kısmını ayarlar*/
+    background-color: var(--turuncu);
+    height: 100%; /*cizginin icinin tabandan yukarı % kacını doldursun.*/
+    border-radius: inherit;
+}
+
+
+
+/*  iletisim  */
+
+.iletisim-card { /*iletsim kutusu arka plandaki mavi ekranı ayarlama*/
+    background-color: rgba(229, 234, 242, 0.8);
+    padding: 50px 25px;
+    border-radius: var(--radius-20);
+}
+
+  
+
+.iletisim .section-title {
+    text-align: left;
+    margin-block-end: 30px;
+}
+
+.iletisim-form {
+    margin-block-end: 50px;
+}
+
+.iletisim-input {
+    background-color: white;
+    color: var(--siyah); /* bir sey yazınız kısmı renk ayarı*/
+    border-radius: var(--radius-5);
+    padding: 15px 25px;
+    font-size: var(--fs-5);
+    margin-block-end: 15px;
+}
+
+
+textarea.iletisim-input {
+    resize: vertical; /* bu özellik sayesinde text alanı asagı dogru kaydırılabilir.*/
+    min-height: 100px;
+    height: 180px;
+    max-height: 300px;
+}
+
+.buton-submit {
+    background-color: var(--turuncu);
+    color: white; /* "gonder" */
+    font-family: bold /* yazı tipi */
+    font-size: var(--fs-5);
+    width: 100%;
+    padding: 10px; /* "gonder" butonunun ust ve alt sınırlara olan uzaklıgı" */
+    border-radius: var(--radius-5);
+    transition: var(--transition-2); /* buton renginin gecis ozelligi */
+}
+
+    .buton-submit:is(:hover, :focus) { /* buton degistigindeki ozellikler */
+        background-color: var(--beyaz);
+        color: var(--siyah);
+    }
+
+.iletisim-item {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+    .iletisim-item:not(:last-child) {
+        margin-block-end: 20px;
+    }
+
+.iletisim-icon {
+    background-color: var(--acik_mor);
+    color: var(--beyaz);
+    font-size: 2.4rem;
+    padding: 40px;
+    border-radius: 50%;
+}
+
+.iletisim-item-title {
+    color: var(--beyaz);
+    font-family: var(--ff-barlow);
+    font-size: var(--fs-4);
+    font-weight: bold;
+}
+
+.iletisim-item-link {
+    transition: var(--transition-1);
+}
+    /* link renginii degistirir*/
+
+    .iletisim-item-link:not(address):is(:hover, :focus) {
+        color: var(--beyaz);
+    }
+/* beyaz olur ustune geldiginde */
+
+
+
+
+
+
+
+
+/* #FOOTER */
+
+.footer { /* arkaplan rengi ve boşluk ayarını duzenler */
+    background-color: var(--koyu_mavi); /*mor_gri*/
+    padding-block: 60px;
+}
+
+.copyright { /* 2022 ile baslayan kısmı ayarlar */
+    max-width: max-content; /* maximum icerik kadar maximum genişlik kapsar */
+    margin-inline: auto;
+    margin-block-end: 10px;
+}
+
+.copyright-link { /* tasacademy linkini ayarlar */
+    display: inline-block; /* satıırları birlestirerek yazar. */
+    transition: var(--transition-2);
+    font-weight: bold;
+}
+
+    .copyright-link:is(:hover, :focus) {
+        color: var(--beyaz);
+    }
+
+.footer-link {
+    max-width: max-content;
+    margin-inline: auto;
+    padding: var(--padding, 40px 40px);
+}
+
+.footer > .container {
+    display: flex; /* konum ayarlarını duzeltir */
+    justify-content: space-between; /* araya bosluk atar. */
+    align-items: center;
+}
+
+
+.footer-list * {
+    display: inline-block;
+}
+
+.footer-list > li:not(:last-child) {
+    margin-inline-end: 40px;
+}
+/* kosullar ve gizlilik arası bosluk bosluk olusmasını saglar.*/
+
+.footer-link {
+    transition: var(--transition-2);
+}
+
+    .footer-link:is(:hover, :focus) {
+        color: var(--beyaz);
+    }
+
+
+
+
+
+/* #BACK TO TOP */
+
+.back-to-top {
+    color: var(--beyaz);
+    font-size: 1.3rem;
+    position: fixed;
+    bottom: 160px;
+    right: -30px;
+    transform: rotate(0.25turn);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-2);
+    z-index: 1;
+}
+
+    .back-to-top.active {
+        right: -5px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .back-to-top::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: calc(100% + 7px);
+        width: 100px;
+        height: 1px;
+        background-color: var(--beyaz);
+    }
+
+
+
+
+
+@media (min-width: 768px) {
+    .skills-list,
+    .blog-list {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 50px;
+    }
+}
+
+
+
+
+
+
+
+.container {
+    max-width: 1050px;
+    margin-inline: auto;
+}
+
+
+
+/*  HEADER  */
+
+.nav-toggle-btn {
+    display: none;
+}
+
+.header,
+.header.nav-active {
+    background-color: transparent;
+    box-shadow: none;
+    height: unset;
+    padding-block: 30px;
+}
+
+    .header.active {
+        background-color: var(--uzay_mavisi);
+        box-shadow: var(--shadow);
+        padding-block: 20px;
+    }
+
+.navbar {
+    all: unset;
+}
+
+.navbar-list {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar .btn {
+    margin-block-start: 0;
+    --padding: 7px 30px;
+}
+
+
+
+
+/* main    ilk sayfanın şeklini ayarlar. */
+
+.main .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.main-content {
+    text-align: left;
+}
+/* sola yaslı yazdırır. */
+
+.btn-group {
+    justify-content: flex-start;
+}
+/* sola yaslı koyar butonu */
+
+.main-title span {
+    font-size: 3rem;
+}
+/* yazı buyuklugu ayarlanır selam kısmı */
+
+.main-title {
+    --fs-5: 2.2rem;
+    margin-block-end: 25px;
+}
+
+.main-text {
+    margin-block-end: 25px;
+}
+
+.main-banner {
+    position: relative; /* resim ve proje tamamlama sekli ayarlaanır */
+    margin-block-end: 0;
+    order: 1;
+    width: 340px; /* resim boyutu ayarlanır */
+    height: 390px;
+    margin-inline-start: auto; /* resmin nerde konumlanacagı */
+}
+
+.elem {
+    position: absolute; /* proje sayısı pozisyonu */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--beyaz);
+    border-radius: var(--radius-10);
+    padding: 20px;
+}
+
+
+
+
+
+
+/* Hakkımda */
+
+.about {
+    padding-block: 180px;
+}
+
+    .about .container {
+        display: grid; /*  sekil, logolorın ve yazıların konumlanmasını saglar */
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+    }
+
+.about-banner {
+    position: relative; /* resim ve logoların konumunu saglar. */
+    margin-block-end: 0;
+}
+
+.abs-img, /* resim ve icon ayarı */
+.abs-icon {
+    display: block;
+    position: absolute;
+}
+
+.abs-img { /* resim ayarı */
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: inherit;
+    bottom: -150px;
+    left: -100px;
+}
+
+.abs-icon { /* ikon ayarı */
+    font-size: 5rem;
+    padding: 25px;
+    border-radius: inherit;
+}
+
+.abs-icon-1 {
+    top: 50px; /* iconun resimdeki yuksekligini ayarlar */
+    left: -90px;
+    background-color: var(--acik_mavi);
+}
+
+.abs-icon-2 {
+    top: -40px;
+    right: -40px;
+    background-color: var(--altinsarisi);
+}
+
+
+
+
+
+/* İletisim */
+
+.iletisim-card {
+    padding: 100px;
+}
+
+.iletisim .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* sayfayı ikiye boler */
+    gap: 80px; /* iki sayfa arası boslugu simgeler */
+}
+
+
+.iletisim-item {
+    gap: 25px;
+}
+
+.iletisim-icon {
+    padding: 30px;
+}
+/* ikonların buyumesini saglar */
+
+
+
+/**
+   * BLOG
+   */
+
+.blog {
+    padding-block-end: 180px;
+}
+
+.blog-list {
+    grid-template-columns: repeat(3, 1fr); /* haberleri 3 bolume ayırır*/
+    gap: 50px;
+}
+
+
+
+
+/*  EN ALT BÖLÜM */
+
+.footer .container {
+    display: flex;
+    justify-content: space-between; /* iki icerik arası bosluk saglar*/
+}
+
+.copyright,
+.footer-list {
+    margin-inline: 0;
 }
